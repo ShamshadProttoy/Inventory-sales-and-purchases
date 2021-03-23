@@ -20,6 +20,22 @@ class Product:
                           fg='red',text="Warehouse Inventory Sales Purchase",
                            bg="white")
         self.ITitle.grid()
+        operationframe=Frame(MainFrame,bd=2,width=1300,height=60,
+                             padx=50,pady=20,bg="white",relief=RIDGE)
+        operationframe.pack(side=BOTTOM)
+
+        bodyframe = Frame(MainFrame, bd=2, width=1290, height=400,
+                               padx=50, pady=20, bg="white", relief=RIDGE)
+        bodyframe.pack(side=BOTTOM)
+        leftbodyframe=LabelFrame(bodyframe, bd=2, width=600, height=380,
+                               padx=20, pady=10, bg="grey", relief=RIDGE,font=("arial",15,"bold"),
+                                 text="Product Item Details:")
+        leftbodyframe.pack(side=LEFT)
+
+        rightbodyframe = LabelFrame(bodyframe, bd=2, width=300, height=380,
+                                   padx=20, pady=10, bg="grey", relief=RIDGE, font=("arial", 15, "bold"),
+                                   text="Product Item Information:")
+        rightbodyframe.pack(side=RIGHT)
 
 
 if __name__== '__main__':
