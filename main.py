@@ -9,6 +9,15 @@ class Product:
         self.root.geometry("1325x690")
         self.root.config(bg="grey")
 
+        pId=StringVar
+        pName=StringVar
+        pPrice=StringVar
+        pQty=StringVar
+        pCompany=StringVar
+        pContact=StringVar
+
+
+
         MainFrame = Frame(self.root,bg="red")
         MainFrame.grid()
 
@@ -36,6 +45,42 @@ class Product:
                                    padx=20, pady=10, bg="grey", relief=RIDGE, font=("arial", 15, "bold"),
                                    text="Product Item Information:")
         rightbodyframe.pack(side=RIGHT)
+
+        self.labelpId=Label(leftbodyframe,font=("arial",15,"bold"),text="Product Id",padx=2,bg="white",fg=
+                            "blue")
+        self.labelpId.grid(row=0,column=0,sticky=W)
+        self.textpId=Entry(leftbodyframe,font=("arial",15,"bold"),textvariable=pId,width=35)
+        self.textpId.grid(row=0,column=1,sticky=W)
+
+        self.labelpName = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Name", padx=2, bg="white", fg=
+        "blue")
+        self.labelpName.grid(row=1, column=0, sticky=W)
+        self.textpName = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pName, width=35)
+        self.textpName.grid(row=1, column=1, sticky=W)
+
+        self.labelpPrice = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Price", padx=2, bg="white", fg=
+        "blue")
+        self.labelpPrice.grid(row=2, column=0, sticky=W)
+        self.textpPrice = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
+        self.textpPrice.grid(row=2, column=1, sticky=W)
+
+        self.labelpId = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Id", padx=2, bg="white", fg=
+        "blue")
+        self.labelpId.grid(row=0, column=0, sticky=W)
+        self.textpId = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
+        self.textpId.grid(row=0, column=1, sticky=W)
+
+        self.labelpId = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Id", padx=2, bg="white", fg=
+        "blue")
+        self.labelpId.grid(row=0, column=0, sticky=W)
+        self.textpId = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
+        self.textpId.grid(row=0, column=1, sticky=W)
+
+        self.labelpId = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Id", padx=2, bg="white", fg=
+        "blue")
+        self.labelpId.grid(row=0, column=0, sticky=W)
+        self.textpId = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
+        self.textpId.grid(row=0, column=1, sticky=W)
 
 
 if __name__== '__main__':
