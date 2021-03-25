@@ -46,41 +46,41 @@ class Product:
                                    text="Product Item Information:")
         rightbodyframe.pack(side=RIGHT)
 
-        self.labelpId=Label(leftbodyframe,font=("arial",15,"bold"),text="Product Id",padx=2,bg="white",fg=
+        self.labelpId=Label(leftbodyframe,font=("arial",15,"bold"),text="Product Id : ",padx=2,bg="white",fg=
                             "blue")
         self.labelpId.grid(row=0,column=0,sticky=W)
         self.textpId=Entry(leftbodyframe,font=("arial",15,"bold"),textvariable=pId,width=35)
         self.textpId.grid(row=0,column=1,sticky=W)
 
-        self.labelpName = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Name", padx=2, bg="white", fg=
+        self.labelpName = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Name : ", padx=2, bg="white", fg=
         "blue")
         self.labelpName.grid(row=1, column=0, sticky=W)
         self.textpName = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pName, width=35)
         self.textpName.grid(row=1, column=1, sticky=W)
 
-        self.labelpPrice = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Price", padx=2, bg="white", fg=
+        self.labelpPrice = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Price : ", padx=2, bg="white", fg=
         "blue")
         self.labelpPrice.grid(row=2, column=0, sticky=W)
-        self.textpPrice = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
+        self.textpPrice = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pPrice, width=35)
         self.textpPrice.grid(row=2, column=1, sticky=W)
 
-        self.labelpId = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Id", padx=2, bg="white", fg=
+        self.labelpQty = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Quantity : ", padx=2, bg="white", fg=
         "blue")
-        self.labelpId.grid(row=0, column=0, sticky=W)
-        self.textpId = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
-        self.textpId.grid(row=0, column=1, sticky=W)
+        self.labelpQty.grid(row=3, column=0, sticky=W)
+        self.textpQty = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pQty , width=30)
+        self.textpQty.grid(row=3, column=1, sticky=W)
 
-        self.labelpId = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Id", padx=2, bg="white", fg=
+        self.labelpCompany = Label(leftbodyframe, font=("arial", 15, "bold"), text="MFG. Company : ", padx=2, bg="white", fg=
         "blue")
-        self.labelpId.grid(row=0, column=0, sticky=W)
-        self.textpId = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
-        self.textpId.grid(row=0, column=1, sticky=W)
+        self.labelpCompany.grid(row=4, column=0, sticky=W)
+        self.textpCompany = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pCompany, width=30)
+        self.textpCompany.grid(row=4, column=1, sticky=W)
 
-        self.labelpId = Label(leftbodyframe, font=("arial", 15, "bold"), text="Product Id", padx=2, bg="white", fg=
+        self.labelpContact = Label(leftbodyframe, font=("arial", 15, "bold"), text="Company contact : ", padx=2, bg="white", fg=
         "blue")
-        self.labelpId.grid(row=0, column=0, sticky=W)
-        self.textpId = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pId, width=35)
-        self.textpId.grid(row=0, column=1, sticky=W)
+        self.labelpContact.grid(row=5, column=0, sticky=W)
+        self.textpContact = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pContact, width=30)
+        self.textpContact.grid(row=5, column=1, sticky=W)
 
 
 if __name__== '__main__':
