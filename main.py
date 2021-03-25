@@ -90,6 +90,37 @@ class Product:
         productList.grid(row=0,column=0,padx=8)
         scroll.config(command=productList.yview())
 
+        self.buttonsave = Button(operationframe, text="Save", font=("arial", 20, "bold"), height=1,
+                                 width=10, bd=4)
+        self.buttonsave.grid(row=0, column=0)
+
+        self.buttonshow = Button(operationframe, text="Show", font=("arial", 20, "bold"), height=1,
+                                 width=10, bd=4)
+        self.buttonshow.grid(row=0, column=1)
+
+        self.buttonclear = Button(operationframe, text="Clear", font=("arial", 20, "bold"), height=1,
+                                 width=10, bd=4)
+        self.buttonclear.grid(row=0, column=2)
+
+        self.buttondelete = Button(operationframe, text="Delete", font=("arial", 20, "bold"), height=1,
+                                 width=10, bd=4)
+        self.buttondelete.grid(row=0, column=3)
+
+        self.buttonsearch = Button(operationframe, text="Search", font=("arial", 20, "bold"), height=1,
+                                 width=10, bd=4)
+        self.buttonsearch.grid(row=0, column=4)
+
+        self.buttonupdate = Button(operationframe, text="Update", font=("arial", 20, "bold"), height=1,
+                                 width=10, bd=4)
+        self.buttonupdate.grid(row=0, column=5)
+
+        self.buttonclose = Button(operationframe, text="Close", font=("arial", 20, "bold"), height=1,
+                                 width=10, bd=4)
+        self.buttonclose.grid(row=0, column=5)
+
+
+
+
 
 if __name__== '__main__':
     root=Tk()
