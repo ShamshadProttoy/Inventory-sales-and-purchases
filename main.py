@@ -41,7 +41,7 @@ class Product:
                                  text="Product Item Details:")
         leftbodyframe.pack(side=LEFT)
 
-        rightbodyframe = LabelFrame(bodyframe, bd=2, width=300, height=380,
+        rightbodyframe = LabelFrame(bodyframe, bd=2, width=400, height=380,
                                    padx=20, pady=10, bg="grey", relief=RIDGE, font=("arial", 15, "bold"),
                                    text="Product Item Information:")
         rightbodyframe.pack(side=RIGHT)
@@ -81,6 +81,14 @@ class Product:
         self.labelpContact.grid(row=5, column=0, sticky=W)
         self.textpContact = Entry(leftbodyframe, font=("arial", 15, "bold"), textvariable=pContact, width=30)
         self.textpContact.grid(row=5, column=1, sticky=W)
+
+
+        scroll=Scrollbar(rightbodyframe)
+        scroll.grid(row=0,column=1,sticky="ns")
+        productList=Listbox(rightbodyframe,width=36,height=15,font=("arial",12,"bold"),
+                            yscrollcommand=scroll.set)
+        productList.grid(row=0,column=0,padx=8)
+        scroll.config(command=productList.yview())
 
 
 if __name__== '__main__':
