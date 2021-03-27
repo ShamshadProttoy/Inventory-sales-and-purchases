@@ -119,6 +119,75 @@ class Product:
         self.buttonclose.grid(row=0, column=5)
 
 
+class Database:
+    def conn(self):
+        print("Database : connection method called")
+        con=sqlite3.connect("Inventory.db")
+        cur=con.cursor()
+        query="create a table if not exists product(pid integer primary key,pname text,price text,qty text,company text,contact text)"
+        cur.execute(query)
+        con.commit()
+        con.close()
+        print("Database : connection method finished")
+
+    def insert(self,pid,pname,price,qty,company,contact):
+        print("Database : insert method called")
+        con = sqlite3.connect("Inventory.db")
+        cur = con.cursor()
+        query="insert into product values(?,?,?,?,?,?)"
+        cur.execute(query,(pid,pname,price,qty,company,contact))
+        con.commit()
+        con.close()
+        print("Database : connection method finished")
+
+    def show(self):
+        print("Database : show method called")
+        con = sqlite3.connect("Inventory.db")
+        cur = con.cursor()
+        query="select * from product"
+        cur.execute(query)
+        rows=cur.fetchall()
+        con.close()
+        print("Database : show method finished")
+        return rows
+
+    def deletee(self,pid):
+        print("Database : delete method called",pid)
+        con = sqlite3.connect("Inventory.db")
+        cur = con.cursor()
+        cur.execute("delete from product where pid=?",(pid,))
+        con.commit()
+        con.close()
+        print(pid,"Database : delete method finished")
+
+    def search(self,pid="",pname="",price="",qty="",company="",contact=""):
+        print("Database : search method called", pid)
+        con = sqlite3.connect("Inventory.db")
+        cur = con.cursor()
+        cur.execute("delete from product where pid=? or pname=? or price=? or \
+                    qty=? or company=? or contact=?")
+        row=cur.fetchall()
+        con.close()
+        print(pid,"Database : delete method finished")
+        return row
+
+    def update(self,pid="",pname="",price="",qty="",company="",contact=""):
+        con = sqlite3.connect("Inventory.db")
+        cur = con.cursor()
+        cur.execute("update  product set pid=? or pname=? or price=? or \
+                            qty=? or company=? or contact=? where pid=?",(pid,pname,price,qty,company,contact,pid))
+        con.commit()
+        con.close()
+        print(pid,"Database : delete method finished")
+
+
+
+
+
+
+
+
+
 
 
 
