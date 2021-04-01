@@ -4,17 +4,118 @@ import sqlite3
 
 class Product:
     def __init__(self,root):
+        p=Database()
+        p.conn()
+
+
         self.root=root
         self.root.title("WAREHOUSE INVENTORY SALES PURCHASE MANAGEMENT SYSTEM")
         self.root.geometry("1325x690")
         self.root.config(bg="grey")
 
-        pId=StringVar
-        pName=StringVar
-        pPrice=StringVar
-        pQty=StringVar
-        pCompany=StringVar
-        pContact=StringVar
+        
+
+        pId=StringVar()
+        pName=StringVar()
+        pPrice=StringVar()
+        pQty=StringVar()
+        pCompany=StringVar()
+        pContact=StringVar( )
+
+
+
+        def close():
+            print("Product : close method called")
+            close=tkinter.messagebox.askyesno("WAREHOUSE INVENTORY SALES PURCHASE MANAGEMENT SYSTEM"
+                                              ,"Really...Do you want to close the system")
+            if close>0:
+                root.destroy()
+                print("Product : close method finished")
+                return
+
+
+        def clear():
+            print("Product : clear method called")
+            self.textpId.delete(0,END)
+            self.textpName.delete(0, END)
+            self.textpPrice.delete(0, END)
+            self.textpQty.delete(0, END)
+            self.textpCompany.delete(0, END)
+            self.textpContact.delete(0, END)
+            print("Product : clear method finished")
+
+        def inserta():
+            print("Product : insert method called")
+            if (len(pId.get()) !=0):
+                p=Database()
+                p.insert(pId.get(), pName.get(), pPrice.get(), pQty.get(), pCompany.get(), pContact.get())
+                productList.delete(0, END)
+                productList.insert(END, pId.get(), pName.get(), pPrice.get(), pQty.get(), pCompany.get(),
+                                   pContact.get())
+                showproduclist()
+            else:
+                tkinter.messagebox.askyesno("WAREHOUSE INVENTORY SALES PURCHASE MANAGEMENT SYSTEM",
+
+                                            "Really........Enter product Id:")
+
+
+
+
+
+
+            print("Product : insert method finished")
+
+        def showproduclist():
+            print("Product : show method called")
+            productList.delete(0,END)
+            for row in p.show():
+                productList.insert(END,row,str(""))
+
+            print("Product : show method finished")
+
+        def productrec(event):
+            print("Product : productrec method called")
+            global pd
+            searchpd=productList.curselection()[0]
+            pd=productList.get(searchpd)
+
+            self.textpId.delete(0, END)
+            self.textpId.insert(END,pd[0])
+
+            self.textpName.delete(0, END)
+            self.textpName.insert(END,pd[1])
+
+            self.textpPrice.delete(0, END)
+            self.textpPrice.insert(END,pd[2])
+
+            self.textpQty.delete(0, END)
+            self.textpQty.insert(END,pd[3])
+            self.textpCompany.delete(0,END)
+            self.textpCompany.insert(END,pd[4])
+            self.textpContact.delete(0, END)
+            self.textpContact.insert(END,pd[5])
+
+            print("Product : productrec method finished")
+
+
+        def delete():
+            print("Product : delete method called")
+            if (len(pId.get())!=0):
+                p.delete(pd[0])
+                clear()
+                showproduclist()
+
+            print("Product : delete method finished")
+
+
+
+
+
+
+
+
+            
+
 
 
 
@@ -87,23 +188,24 @@ class Product:
         scroll.grid(row=0,column=1,sticky="ns")
         productList=Listbox(rightbodyframe,width=36,height=15,font=("arial",12,"bold"),
                             yscrollcommand=scroll.set)
+        productList.bind('<<ListboxSelect>>',productrec)
         productList.grid(row=0,column=0,padx=8)
         scroll.config(command=productList.yview())
 
         self.buttonsave = Button(operationframe, text="Save", font=("arial", 20, "bold"), height=1,
-                                 width=10, bd=4)
+                                 width=10, bd=4,command=inserta)
         self.buttonsave.grid(row=0, column=0)
 
         self.buttonshow = Button(operationframe, text="Show", font=("arial", 20, "bold"), height=1,
-                                 width=10, bd=4)
+                                 width=10, bd=4,command=showproduclist)
         self.buttonshow.grid(row=0, column=1)
 
         self.buttonclear = Button(operationframe, text="Clear", font=("arial", 20, "bold"), height=1,
-                                 width=10, bd=4)
+                                 width=10, bd=4,command=clear)
         self.buttonclear.grid(row=0, column=2)
 
         self.buttondelete = Button(operationframe, text="Delete", font=("arial", 20, "bold"), height=1,
-                                 width=10, bd=4)
+                                 width=10, bd=4,command=delete)
         self.buttondelete.grid(row=0, column=3)
 
         self.buttonsearch = Button(operationframe, text="Search", font=("arial", 20, "bold"), height=1,
@@ -115,7 +217,7 @@ class Product:
         self.buttonupdate.grid(row=0, column=5)
 
         self.buttonclose = Button(operationframe, text="Close", font=("arial", 20, "bold"), height=1,
-                                 width=10, bd=4)
+                                 width=10, bd=4,command=close)
         self.buttonclose.grid(row=0, column=5)
 
 
@@ -124,18 +226,18 @@ class Database:
         print("Database : connection method called")
         con=sqlite3.connect("Inventory.db")
         cur=con.cursor()
-        query="create a table if not exists product(pid integer primary key,pname text,price text,qty text,company text,contact text)"
+        query="create  table if not exists product(pid integer primary key,pname text,price text,qty text,company text,contact text)"
         cur.execute(query)
         con.commit()
         con.close()
         print("Database : connection method finished")
 
-    def insert(self,pid,pname,price,qty,company,contact):
+    def insert(self,pId,pname,price,qty,company,contact):
         print("Database : insert method called")
         con = sqlite3.connect("Inventory.db")
         cur = con.cursor()
-        query="insert into product values(?,?,?,?,?,?)"
-        cur.execute(query,(pid,pname,price,qty,company,contact))
+        #query="insert into product values(?,?,?,?,?,?)"
+        cur.execute("insert into product values(?,?,?,?,?,?)",(pId,pname,price,qty,company,contact))
         con.commit()
         con.close()
         print("Database : connection method finished")
@@ -151,7 +253,7 @@ class Database:
         print("Database : show method finished")
         return rows
 
-    def deletee(self,pid):
+    def delete(self,pid):
         print("Database : delete method called",pid)
         con = sqlite3.connect("Inventory.db")
         cur = con.cursor()
