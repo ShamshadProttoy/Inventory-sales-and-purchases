@@ -107,6 +107,27 @@ class Product:
 
             print("Product : delete method finished")
 
+        def search():
+            print("Product : search method called")
+            productList.delete(0,END)
+            for row in p.search(pId.get(), pName.get(), pPrice.get(), pQty.get(), pCompany.get(), pContact.get()):
+                productList.insert(END,row,str(""))
+
+        def update():
+            print("Product : update method called")
+            if (len(pId.get()) != 0):
+                print("pd[0]",pd[0])
+                p.delete(pd[0])
+
+            if (len(pId.get()) != 0):
+                p.insert(pId.get(), pName.get(), pPrice.get(), pQty.get(), pCompany.get(), pContact.get())
+                productList.delete(0,END)
+            productList.insert(END,(pId.get(), pName.get(), pPrice.get(), pQty.get(), pCompany.get(), pContact.get()))
+
+            print("Product : update method called")
+
+
+
 
 
 
@@ -209,16 +230,16 @@ class Product:
         self.buttondelete.grid(row=0, column=3)
 
         self.buttonsearch = Button(operationframe, text="Search", font=("arial", 20, "bold"), height=1,
-                                 width=10, bd=4)
+                                 width=10, bd=4,command=search)
         self.buttonsearch.grid(row=0, column=4)
 
         self.buttonupdate = Button(operationframe, text="Update", font=("arial", 20, "bold"), height=1,
-                                 width=10, bd=4)
+                                 width=10, bd=4,command=update)
         self.buttonupdate.grid(row=0, column=5)
 
         self.buttonclose = Button(operationframe, text="Close", font=("arial", 20, "bold"), height=1,
                                  width=10, bd=4,command=close)
-        self.buttonclose.grid(row=0, column=5)
+        self.buttonclose.grid(row=0, column=6)
 
 
 class Database:
@@ -266,8 +287,8 @@ class Database:
         print("Database : search method called", pid)
         con = sqlite3.connect("Inventory.db")
         cur = con.cursor()
-        cur.execute("delete from product where pid=? or pname=? or price=? or \
-                    qty=? or company=? or contact=?")
+        cur.execute("select * from product where pid=? or pname=? or \
+        price=? or  qty=? or company=? or contact=?",(pid,pname,price,qty,company,contact))
         row=cur.fetchall()
         con.close()
         print(pid,"Database : delete method finished")
@@ -281,6 +302,8 @@ class Database:
         con.commit()
         con.close()
         print(pid,"Database : delete method finished")
+
+
 
 
 
